@@ -1,10 +1,10 @@
 [org 0x7c00]
 
-mov BP, 0x8c00
-mov SP, BP 
+mov                     BP,                     0x8c00
+mov                     SP,                     BP 
 
-mov dx, welcome_msg
-call print_string
+mov                     dx,                     welcome_msg
+call                    print_string
 
 %include "rps_utils.nasm"
 
