@@ -1,19 +1,18 @@
-                                                                                                ; Prints Hello World
+    SECTION .text
+                                                                                                ; executable
+                        global                  _start                                          ; this, apparently, defines which label your code starts
+                                                                                                ; syscall numbers go to ax register
+_start:                 mov                     eax,                    4                       ; syscall for write
+                        mov                     ebx,                    1                       ; write to stdout(1)
+                        mov                     ecx,                    message                 ; string to output
+                        mov                     edx,                    msglen                  ; number of bytes -- size of the string
+                        int                     0x80                                            ; call the kernel
+                        mov                     eax,                    1                       ; syscall for exit
+                        mov                     ebx,                    0                       ; exit code 0
+                        int                     0x80
 
-[org 0x7c00]
+    SECTION .rdata
+                                                                                                ; readable writable, not executable
+message: db "Hello, World!", 0x0a
+msglen: equ $ - message
 
-                        mov                     AH,                     0x0E                    ; Teletype mode
-                        mov                     BX,                     hello                   ; Move starting adress of hello string to bx
-START:                  mov                     AL,                     [BX]                    ; Move value stored at adress specified in bx to al
-                        cmp                     AL,                     0                     
-                        je                      DONE                                            ; End of string reached
-                        int                     0x10                                            ; Video services interrupt
-                        add                     BX,                     1                       ; Move to next character in the hello string
-                        jmp                     START                                           ; Continue the loop
-
-DONE:                   jmp                     $
-
-hello:                  dw                      "Hello World",          0
-
-                        times                   510 - ($-$$)            db 0                    ; Pad the remaining space with 0
-                        dw                      0xaa55                                          ; End of boot loader code
