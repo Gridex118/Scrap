@@ -1,4 +1,4 @@
-#include "stdio.h"
+#include <stdio.h>
 
 int binary_search(int token, int array[], int low, int high) {
     if (low > high) return -1;
