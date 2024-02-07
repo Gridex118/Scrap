@@ -2,35 +2,40 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char* input() {
-    size_t cap = 8;
-    char *ptr = (char*)malloc(sizeof(char) * cap);
-    size_t i = 0;
-    while (true) {    // remove leading whitespace
-        int c = fgetc(stdin);
+void input_strip_ws() {
+    while (true) {
+        char c = fgetc(stdin);
         if (c != ' ' && c != '\n') {
             ungetc(c, stdin);
             break;
         }
     }
+}
+
+char* input() {
+    input_strip_ws();
+    size_t cap = 16;
+    char *input_buf = (char*)malloc(sizeof(char) * cap);
+    size_t i = 0;
     while (true) {
-        int c = fgetc(stdin);
+        char c = fgetc(stdin);
         if (c == '\n') break;
-        ptr[i] = (char)c;
+        input_buf[i] = c;
         if (i + 2 >= cap) {    // reallocate memory if cap is exceeded
                                // + 1 to account for the trailing \0
             cap *= 2;
-            ptr = realloc(ptr, sizeof(char) * cap);
+            input_buf = realloc(input_buf, sizeof(char) * cap);
         }
         i++;
     }
-    ptr[i] = '\0';
-    return ptr;
+    input_buf[i] = '\0';
+    return input_buf;
 }
 
 int main() {
     printf("Type something: ");
     char *str = input();
+    if (str == NULL) return -1;
     printf("%s\n", str);
     return 0;
 }

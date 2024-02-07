@@ -5,11 +5,9 @@ void merge(int b[], int begin, int middle, int end, int a[]) {
     int i = begin, j = middle;
     for (int k = begin; k < end; k++) {
         if ((i < middle) && (j >= end || a[i] <= a[j])) {
-            b[k] = a[i];
-            ++i;
+            b[k] = a[i++];
         } else {
-            b[k] = a[j];
-            ++j;
+            b[k] = a[j++];
         }
     }
 }
