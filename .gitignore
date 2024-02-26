@@ -6,3 +6,5 @@
 .ccls-cache/
 x86/bin/
 .gdb*
+.clj-kondo/
+.lsp/
