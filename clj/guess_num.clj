@@ -1,3 +1,5 @@
+(ns guess-num)
+
 (println "Guess the Number!")
 
 (defn input []
