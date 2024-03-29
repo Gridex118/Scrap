@@ -6,8 +6,17 @@
 
 void matrix_add(int rows, int cols, int matrix_a[rows][cols], int matrix_b[rows][cols], int matrix_c[rows][cols]) {
     for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
+        for (int j = 0; j < cols; ++j)
             matrix_c[i][j] = matrix_a[i][j] + matrix_b[i][j];
+    }
+}
+
+void matrix_multipy(int rows_a, int cols_a, int cols_b, int matrix_a[rows_a][cols_a], int matrix_b[cols_a][cols_b], int matrix_c[rows_a][cols_b]) {
+    for (int i = 0; i < rows_a; ++i) {
+        for (int j = 0; j < cols_b; ++j) {
+            matrix_c[i][j] = 0;
+            for (int k = 0; k < cols_a; ++k)
+                matrix_c[i][j] += (matrix_a[i][k] * matrix_b[k][j]);
         }
     }
 }
@@ -24,9 +33,8 @@ void matrix_transpose(int rows, int cols, int matrix[rows][cols]) {
 
 void matrix_print(int rows, int cols, int matrix[rows][cols]) {
     for (int i = 0; i < rows; ++i) {
-        for (int j = 0; j < cols; ++j) {
+        for (int j = 0; j < cols; ++j)
             printf("%4d ", matrix[i][j]);
-        }
         putchar('\n');
     }
 }
@@ -34,9 +42,8 @@ void matrix_print(int rows, int cols, int matrix[rows][cols]) {
 static inline void print_row_prompt(int row, int cols) {
     printf("Enter %d row elements", row);
     // Display required indices
-    for (int i = 0; i < cols; ++i) {
+    for (int i = 0; i < cols; ++i)
         printf("[%d %d] ", row, i);
-    }
     printf("\n>> ");
 }
 
@@ -82,6 +89,10 @@ void matrix_add_33(int matrix_a[3][3], int matrix_b[3][3], int matrix_c[3][3]) {
     matrix_add(3, 3, matrix_a, matrix_b, matrix_c);
 }
 
+void matrix_multipy_33(int matrix_a[3][3], int matrix_b[3][3], int matrix_c[3][3]) {
+    matrix_multipy(3, 3, 3, matrix_a, matrix_b, matrix_c);
+}
+
 void matrix_transpose_33(int matrix[3][3]) {
     matrix_transpose(3, 3, matrix);
 }
@@ -95,12 +106,10 @@ int matrix_input_33(int matrix[3][3]) {
 }
 
 int main(void) {
-    int matrix_a[3][3];
-    if (matrix_input_33(matrix_a) == -1) return -1;
+    int matrix_a[3][3] = {{3, 1, 5}, {2, 2, 9}, {7, 3, 4}};
     int matrix_b[3][3] = {{3, 1, 5}, {2, 2, 9}, {7, 3, 4}};
     int matrix_c[3][3];
-    matrix_add_33(matrix_a, matrix_b, matrix_c);
-    matrix_transpose_33(matrix_c);
+    matrix_multipy_33(matrix_a, matrix_b, matrix_c);
     putchar('\n');
     matrix_print_33(matrix_c);
     return 0;
