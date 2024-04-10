@@ -11,7 +11,11 @@ void matrix_add(int rows, int cols, int matrix_a[rows][cols], int matrix_b[rows]
     }
 }
 
-void matrix_multipy(int rows_a, int cols_a, int cols_b, int matrix_a[rows_a][cols_a], int matrix_b[cols_a][cols_b], int matrix_c[rows_a][cols_b]) {
+void matrix_multipy(
+        int rows_a, int cols_a, int cols_b,
+        int matrix_a[rows_a][cols_a], int matrix_b[cols_a][cols_b], int matrix_c[rows_a][cols_b]
+) {
+    // for valid multiplication, column count of a = row count of b
     for (int i = 0; i < rows_a; ++i) {
         for (int j = 0; j < cols_b; ++j) {
             matrix_c[i][j] = 0;
