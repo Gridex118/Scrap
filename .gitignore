@@ -3,6 +3,8 @@
 *.out
 *.class
 *.s
+*.o
+*.hi
 .ccls-cache/
 x86/bin/
 .gdb*
