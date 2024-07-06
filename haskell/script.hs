@@ -1,17 +1,13 @@
-module Scripts where
+module Script where
 
-nonsense :: Bool -> Integer
-nonsense True = 805
-nonsense False = 31137
+ifEvenAdd2 :: Integer -> Maybe Integer
+ifEvenAdd2 n = if even n then Just (n + 2) else Nothing
 
-typicalCurriedFunction :: Integer -> Bool -> Integer
-typicalCurriedFunction i b = i + nonsense b
+data Sounds =
+    Screech
+    | Wail
+    deriving Eq
 
-uncurriedFunction :: (Integer, Bool) -> Integer
-uncurriedFunction (i, b) = i + nonsense b
-
-anonymous :: Integer -> Bool -> Integer
-anonymous = \i b -> i + nonsense b
-
-f :: Num a => (a, a) -> a
-f (x, y) = x * y
+instance Show Sounds where
+    show Screech = "*Screeeeech*"
+    show Wail = "*Waaaaa*"
