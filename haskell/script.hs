@@ -1,13 +1,12 @@
 module Script where
+import System.IO
 
-ifEvenAdd2 :: Integer -> Maybe Integer
-ifEvenAdd2 n = if even n then Just (n + 2) else Nothing
-
-data Sounds =
-    Screech
-    | Wail
-    deriving Eq
-
-instance Show Sounds where
-    show Screech = "*Screeeeech*"
-    show Wail = "*Waaaaa*"
+main :: IO String
+main = do
+    hSetBuffering stdout NoBuffering
+    putStr "Type your age: "
+    age <- readLn :: IO Int
+    putStrLn ("You are " ++ show age ++ " years old.")
+    if age < 18
+    then return "You are a minor"
+    else return ""
