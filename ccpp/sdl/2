@@ -1,0 +1,63 @@
+#include <SDL2/SDL.h>
+#include <iostream>
+
+#define WINDOW_WIDTH 640
+#define WINDOW_HEIGHT 320
+
+#define PIXEL_SCALED_SIDE 10
+
+uint8_t FONT_DATA[] = {
+    0xF0, 0x90, 0x90, 0x90, 0xF0,   // 0
+    0x20, 0x60, 0x20, 0x20, 0x70,   // 1
+    0xF0, 0x10, 0xF0, 0x80, 0xF0,   // 2
+    0xF0, 0x10, 0xF0, 0x10, 0xF0,   // 3
+    0x90, 0x90, 0xF0, 0x10, 0x10,   // 4
+    0xF0, 0x80, 0xF0, 0x10, 0xF0,   // 5
+    0xF0, 0x80, 0xF0, 0x90, 0xF0,   // 6
+    0xF0, 0x10, 0x20, 0x40, 0x40,   // 7
+    0xF0, 0x90, 0xF0, 0x90, 0xF0,   // 8
+    0xF0, 0x90, 0xF0, 0x10, 0xF0,   // 9
+    0xF0, 0x90, 0xF0, 0x90, 0x90,   // A
+    0xE0, 0x90, 0xE0, 0x90, 0xE0,   // B
+    0xF0, 0x80, 0x80, 0x80, 0xF0,   // C
+    0xE0, 0x90, 0x90, 0x90, 0xE0,   // D
+    0xF0, 0x80, 0xF0, 0x80, 0xF0,   // E
+    0xF0, 0x80, 0xF0, 0x80, 0x80    // F
+};
+
+int main(void) { 
+    SDL_Init(SDL_INIT_VIDEO);
+    SDL_Window *window = SDL_CreateWindow("FONTS", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WINDOW_WIDTH, WINDOW_HEIGHT, SDL_WINDOW_SHOWN);
+    SDL_Renderer *renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
+    SDL_Event event;
+    SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    SDL_RenderClear(renderer);
+    SDL_RenderPresent(renderer);
+    int i = 10;
+    // for (int col = 0; col < 50; col+=10) {
+    //     for (int row = 0; row < 40; row+=10) {
+    //         bool to_color = ((int)FONT_DATA[i] >> (7 - (row/10))) & 1;
+    //         if (to_color) {
+    //             std::cout << "1 ";
+    //             SDL_SetRenderDrawColor(renderer, 0xA0, 0, 0, 0xFF);
+    //         } else {
+    //             std::cout << "0 ";
+    //             SDL_SetRenderDrawColor(renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    //         }
+    //         SDL_Rect rect = {PIXEL_SCALED_SIDE, PIXEL_SCALED_SIDE, row, col};
+    //         SDL_RenderFillRect(renderer, &rect);
+    //         SDL_RenderPresent(renderer);
+    //     }
+    //     std::cout << '\n';
+    //     i++;
+    // }
+    while (true) {
+        if (SDL_PollEvent(&event) && event.type == SDL_QUIT) {
+            break;
+        }
+    }
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
+    SDL_Quit();
+    return 0;
+}
