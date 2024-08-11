@@ -1,12 +1,22 @@
 #include <stdio.h>
-#define LEN(arr) (sizeof(arr)/sizeof(arr[0]))
+
+void get_arr(int *restrict arr, const size_t len) {
+    for (size_t i = 0; i < len; ++i) {
+        printf("Enter element %zd: ", i);
+        scanf("%d", &arr[i]);
+    }
+}
 
 int main() {
-    int data[] = {2, 3, 5, 10, 11, 30, 40, 44, 53};
-    int token = 2;
-    for (int i = 0; i < LEN(data); i++) {
+    const size_t len = 5;
+    int data[len];
+    get_arr(data, len);
+    int token;
+    printf("Enter token to search: ");
+    scanf("%d", &token);
+    for (size_t i = 0; i < len; i++) {
         if (data[i] == token) {
-            printf("Token found at index %d\n", i);
+            printf("Token found at index %zd\n", i);
             return 0;
         }
     }
