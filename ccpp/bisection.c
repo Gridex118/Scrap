@@ -6,8 +6,7 @@ typedef struct {
     double b;
 } TwoTouple;
 
-void method_of_bisection(TwoTouple *const bounds, double (*const f)(const double)) {
-    static int iter = 1;
+void method_of_bisection(TwoTouple *const bounds, double (*const f)(const double), const int iter) {
     double c = (bounds->a + bounds->b) / 2;
     double error = (*f)(c);
     printf("%d. [%.13lf, %.13lf] -> %.13lf\n", iter, bounds->a, bounds->b, error);
@@ -17,8 +16,7 @@ void method_of_bisection(TwoTouple *const bounds, double (*const f)(const double
         } else {
             bounds->a = c;
         }
-        ++iter;
-        method_of_bisection(bounds, f);
+        method_of_bisection(bounds, f, iter + 1);
     }
 }
 
@@ -32,8 +30,8 @@ double g(const double x) {
 
 int main(void) {
     TwoTouple bounds_init = {
-        .a = 2.7, .b = 2.8
+        .a = 2.7, .b = 3
     };
-    method_of_bisection(&bounds_init, g);
+    method_of_bisection(&bounds_init, f, 1);
     return 0;
 }
