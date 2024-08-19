@@ -1,13 +1,12 @@
 module Scratch where
 
-data Bounds = Bounds Double Double
+data Bounds = Bounds
+    { a :: Double
+    , b :: Double}
 
 instance Show Bounds where
     show (Bounds a b) =
         "(" ++ show a ++ ", " ++ show b ++ ")"
-
-foo :: Bounds -> Double
-foo (Bounds a b) = a
 
 bar :: Int -> Int
 bar x =
