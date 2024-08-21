@@ -22,9 +22,13 @@ void method_of_bisection(const short precision, TwoTouple *const bounds,
     }
 }
 
-double f(const double x) { return pow(x, 3) - (4 * x) - 9; }
+double f(const double x) {
+    return pow(x, 3) - (4 * x) - 9;
+}
 
-double g(const double x) { return (x * log10(x)) - 1.2; }
+double g(const double x) {
+    return (x * log10(x)) - 1.2;
+}
 
 int main(void) {
     TwoTouple bounds_init;
