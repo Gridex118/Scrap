@@ -48,7 +48,7 @@ int main(void) {
     populate_array(&arr);
     print_arr(&arr);
     size_t at;
-    printf("Insert at index: ");
+    printf("Delete at index: ");
     scanf("%zu", &at);
     if (delete(&arr, at) != 0) return -1;
     puts("The new array is: ");
