@@ -6,7 +6,7 @@ typedef struct {
     int *data;
 } Array;
 
-void print_arr(const Array *const restrict arr) {
+void print_array(const Array *const arr) {
     printf("The array: ");
     for (size_t i = 0; i < arr->len; ++i) {
         printf("%d ", arr->data[i]);
@@ -14,14 +14,14 @@ void print_arr(const Array *const restrict arr) {
     putchar('\n');
 }
 
-void populate_array(Array *const restrict arr) {
+void populate_array(Array *const arr) {
     for (size_t i = 0; i < arr->len; ++i) {
         printf("Enter element %zu: ", i);
         scanf("%d", &arr->data[i]);
     }
 }
 
-int delete(Array *const restrict arr, const size_t at) {
+int delete(Array *const arr, const size_t at) {
     if (arr->len == 0) {
         fprintf(stderr, "Can not delete more elements\n");
         return -1;
@@ -46,12 +46,12 @@ int main(void) {
         return -1;
     }
     populate_array(&arr);
-    print_arr(&arr);
+    print_array(&arr);
     size_t at;
     printf("Delete at index: ");
     scanf("%zu", &at);
     if (delete(&arr, at) != 0) return -1;
     puts("The new array is: ");
-    print_arr(&arr);
+    print_array(&arr);
     return 0;
 }

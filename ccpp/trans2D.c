@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void populate_arr2d(int *const restrict arr, const size_t m, const size_t n) {
+void populate_arr2d(int *const arr, const size_t m, const size_t n) {
     for (size_t i = 0; i < m; ++i) {
         for (size_t j = 0; j < n; ++j) {
             size_t index = (n * i) + j;
@@ -11,7 +11,7 @@ void populate_arr2d(int *const restrict arr, const size_t m, const size_t n) {
     }
 }
 
-void print_arr2d(const int *const restrict arr, const size_t m, const size_t n) {
+void print_arr2d(const int *const arr, const size_t m, const size_t n) {
     for (size_t i = 0; i < m; ++i) {
         for (size_t j = 0; j < n; ++j) {
             size_t index = (n * i) + j;
@@ -21,7 +21,7 @@ void print_arr2d(const int *const restrict arr, const size_t m, const size_t n) 
     }
 }
 
-void transpose_arr2d(int *const restrict arr, const size_t m, const size_t n) {
+void transpose_arr2d(int *const arr, const size_t m, const size_t n) {
     for (size_t i = 0; i < m; ++i) {
         for (size_t j = i + 1; j < n; ++j) {
             size_t index = (n * i) + j;

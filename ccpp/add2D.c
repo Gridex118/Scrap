@@ -7,13 +7,13 @@ typedef struct {
     int *data;
 } Array2D;
 
-void init_arr2d(Array2D *const restrict arr, const size_t m, const size_t n) {
+void init_arr2d(Array2D *const arr, const size_t m, const size_t n) {
     arr->m = m;
     arr->n = n;
     arr->data = malloc(m * n * sizeof(int));
 }
 
-void populate_arr2d(Array2D *const restrict arr) {
+void populate_arr2d(Array2D *const arr) {
     for (size_t i = 0; i < arr->m; ++i) {
         for (size_t j = 0; j < arr->n; ++j) {
             size_t index = (arr->n * i) + j;
@@ -23,7 +23,7 @@ void populate_arr2d(Array2D *const restrict arr) {
     }
 }
 
-void print_arr2d(Array2D *const restrict arr) {
+void print_arr2d(Array2D *const arr) {
     for (size_t i = 0; i < arr->m; ++i) {
         for (size_t j = 0; j < arr->n; ++j) {
             size_t index = (arr->n * i) + j;
@@ -33,7 +33,7 @@ void print_arr2d(Array2D *const restrict arr) {
     }
 }
 
-void add_arr2d(Array2D *const restrict arr1, Array2D *const restrict arr2, Array2D *const restrict arr_sum) {
+void add_arr2d(Array2D *const arr1, Array2D *const arr2, Array2D *const arr_sum) {
     for (size_t i = 0; i < arr_sum->m; ++i) {
         for (size_t j = 0; j < arr_sum->n; ++j) {
             size_t index = (arr_sum->n * i) + j;

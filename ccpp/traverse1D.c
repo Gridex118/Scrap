@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void traverse_arr(int *const restrict arr, const size_t len) {
+void traverse_arr(int *const arr, const size_t len) {
     printf("The array: ");
     for (size_t i = 0; i < len; ++i) {
         printf("%d ", arr[i]);
@@ -9,7 +9,7 @@ void traverse_arr(int *const restrict arr, const size_t len) {
     putchar('\n');
 }
 
-void populate_array(int *const restrict arr, const size_t len) {
+void populate_array(int *const arr, const size_t len) {
     for (size_t i = 0; i < len; ++i) {
         printf("Enter element %zu: ", i);
         scanf("%d", arr + i);
