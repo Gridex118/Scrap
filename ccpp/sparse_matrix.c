@@ -113,17 +113,14 @@ void print_irregular_matrix(const SqMatrix *const matrix) {
 }
 
 int main(void) {
-    // size_t m;
-    // printf("Enter matrix (square) dimention: ");
-    // scanf("%zu", &m);
-    const size_t m = 4;
-    int data[4 * 4] = {1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 1};
+    size_t m;
+    printf("Enter matrix (square) dimention: ");
+    scanf("%zu", &m);
     SqMatrix matrix = {
         .m = m,
-        // .data = malloc(m * m * sizeof(int))
-        .data = data
+        .data = malloc(m * m * sizeof(int))
     };
-    // populate_matrix(&matrix);
+    populate_matrix(&matrix);
     print_matrix(&matrix);
     if (is_null_matrix(&matrix)) {
         puts("This is a null matrix");
@@ -139,6 +136,6 @@ int main(void) {
         puts("This is an irregular matrix");
         print_irregular_matrix(&matrix);
     }
-    // free(matrix.data);
+    free(matrix.data);
     return 0;
 }
