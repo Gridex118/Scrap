@@ -13,8 +13,8 @@ Node* new_node(const int data) {
     return node;
 }
 
-int append_node(Node *const first, const int data) {
-    Node *iter = first;
+int append_node(Node *const head, const int data) {
+    Node *iter = head;
     while (iter->next != NULL) {
         iter = iter->next;
     }
@@ -22,15 +22,15 @@ int append_node(Node *const first, const int data) {
     return 0;
 }
 
-int prepend_node(Node **first, const int data) {
+int prepend_node(Node **head, const int data) {
     Node *new = new_node(data);
-    new->next = *first;
-    *first = new;
+    new->next = *head;
+    *head = new;
     return 0;
 }
 
-int insert_node_after(Node *const first, const int data, const int after) {
-    Node *iter = first;
+int insert_node_after(Node *const head, const int data, const int after) {
+    Node *iter = head;
     while (iter->data != after) {
         iter = iter->next;
         if (iter == NULL) {
@@ -44,8 +44,8 @@ int insert_node_after(Node *const first, const int data, const int after) {
     return 0;
 }
 
-int insert_node_before(Node *const first, const int data, const int before) {
-    Node *iter = first;
+int insert_node_before(Node *const head, const int data, const int before) {
+    Node *iter = head;
     while (iter->next->data != before) {
         if (iter->next->next == NULL) {
             fprintf(stderr, "Could not find element\n");
@@ -59,8 +59,35 @@ int insert_node_before(Node *const first, const int data, const int before) {
     return 0;
 }
 
-void print_list(const Node *const first) {
-    const Node *iter = first;
+int delete_node_back(Node **head) {
+    if (*head == NULL) {
+        fprintf(stderr, "Empty, can not delete anymore\n");
+        return -1;
+    }
+    Node *tmp = *head;
+    *head = (*head)->next;
+    free(tmp);
+    return 0;
+}
+
+int delete_node_front(Node *head) {
+    if (head == NULL) {
+        fprintf(stderr, "Empty, can not delete anymore\n");
+        return -1;
+    }
+    Node *iter = head;
+    Node *iter_prev = iter;
+    while (iter->next != NULL) {
+        iter_prev = iter;
+        iter = iter->next;
+    }
+    iter_prev->next = NULL;
+    free(iter);
+    return 0;
+}
+
+void print_list(const Node *const head) {
+    const Node *iter = head;
     while (iter != NULL) {
         printf("%d ", iter->data);
         iter = iter->next;
@@ -69,15 +96,9 @@ void print_list(const Node *const first) {
 }
 
 int main(void) {
-    Node *first = new_node(15);
-    append_node(first, 16);
-    append_node(first, 17);
-    append_node(first, 18);
-    append_node(first, 19);
-    append_node(first, 22);
-    prepend_node(&first, 14);
-    insert_node_after(first, 20, 19);
-    insert_node_before(first, 21, 22);
-    print_list(first);
+    Node *head = new_node(15);
+    append_node(head, 16);
+    delete_node_front(head);
+    print_list(head);
     return 0;
 }

@@ -10,8 +10,7 @@ void method_of_bisection(const short precision, TwoTouple *const bounds,
                          double (*const f)(const double), const int iter) {
     double c = (bounds->a + bounds->b) / 2;
     double error = (*f)(c);
-    printf("%2d. [%.13lf, %.13lf] : %.13lf -> % .13lf\n", iter, bounds->a,
-           bounds->b, c, error);
+    printf("%2d. [%.13lf, %.13lf] : %.13lf -> % .13lf\n", iter, bounds->a, bounds->b, c, error);
     if (fabs(error) > pow(10, -precision)) {
         if (error > 0) {
             bounds->b = c;
@@ -24,10 +23,6 @@ void method_of_bisection(const short precision, TwoTouple *const bounds,
 
 double f(const double x) {
     return pow(x, 3) - (4 * x) - 9;
-}
-
-double g(const double x) {
-    return (x * log10(x)) - 1.2;
 }
 
 int main(void) {
