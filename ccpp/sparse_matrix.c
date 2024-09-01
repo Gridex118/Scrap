@@ -37,14 +37,8 @@ static inline int is_diagonal_element(const size_t i, const size_t j) {
     return (i == j);
 }
 
-static inline int is_auxilary_diagonal_element(const size_t i_max, const size_t i, const size_t j) {
-    if (i == 0) {
-        return (j == i + 1);
-    } else if (i == i_max) {
-        return (j == i - 1);
-    } else {
-        return (j == i - 1) || (j == i + 1);
-    }
+static inline int is_auxilary_diagonal_element(const size_t i, const size_t j) {
+    return (j == i - 1) || (j == i + 1);
 }
 
 static inline int is_non_zero_element(const SqMatrix *const matrix, const size_t index) {
@@ -70,7 +64,7 @@ int is_tridiagonal_matrix(const SqMatrix *const matrix) {
         for (size_t j = 0; j < matrix->m; ++j) {
             size_t index = (matrix->m * i) + j;
             if (is_non_zero_element(matrix, index)) {
-                if (!(is_diagonal_element(i, j) || is_auxilary_diagonal_element(matrix->m, i, j))) {
+                if (!(is_diagonal_element(i, j) || is_auxilary_diagonal_element(i, j))) {
                     return 0;
                 }
             }
