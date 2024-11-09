@@ -9,8 +9,10 @@
     B = tmp; \
 }
 
+void selection_sort(int arr[], int len);
 void bubble_sort(int arr[], int len);
 void insert_sort(int arr[], int len);
 void merge_sort(int arr[], int len);
+void heap_sort(int arr[], int len);
 
 #endif
