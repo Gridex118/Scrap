@@ -1,0 +1,7 @@
+#include <stdio.h>
+
+// We shall concern ourselves, here, with only 2x2 matrices
+
+int main(void) {
+    
+}
